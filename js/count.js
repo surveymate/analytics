@@ -41,7 +41,7 @@ var response = fetch(url, {
     var jsonData = JSON.parse(result);
     console.log(jsonData);
     if (responseCode == 200) {
-      countUp(jsonData.numberOfRespondents);
+      // countUp(jsonData.numberOfRespondents);
     }
     else {
       console.log("failure");
@@ -51,7 +51,7 @@ var response = fetch(url, {
   console.error(error);
 });
 
-
+countUp(100);
 
 function countUp3(count)
 {
