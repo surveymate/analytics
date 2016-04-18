@@ -13,10 +13,10 @@
 
 
   <!-- Stylesheets -->
-  
+
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Font awesome icon -->
-  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
   <!-- jQuery UI -->
   <!-- <link rel="stylesheet" href="css/jquery-ui.css">  -->
   <!-- Calendar -->
@@ -38,16 +38,16 @@
  <!--  <link href="css/stylenew1.css" rel="stylesheet"> -->
   <!-- <link href="css/style-responsive.css" rel="stylesheet" /> -->
   <!-- Widgets stylesheet -->
-  <link href="css/widgets.css" rel="stylesheet">   
-  
-  
+  <link href="css/widgets.css" rel="stylesheet">
+
+
   <link rel="stylesheet" type="text/css" href="css/hovereffect.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css' />
   <link rel="stylesheet" type="text/css" href="css/demo.css" />
   <link rel="stylesheet" type="text/css" href="css/common.css" />
-  
+
   <script src="js/jquery.js"></script> <!-- jQuery -->
-  
+
   <link rel="stylesheet" href="js/leaflet-0.7.3/leaflet.css" />
   <script src="js/leaflet-0.7.3/leaflet.js"></script>
   <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
@@ -60,6 +60,40 @@
   <![endif]-->
   <script src='js/ChartNew.js'></script>
   <script src='Add-ins/format.js'></script>
+
+  <script>
+    // var projectId = window.location.href.split("?")[1].split("=")[1];
+    var projectId = "57141fae59078a1100579d02"
+    var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId='+projectId;
+    // var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId=5713f50357871011001a5640'
+    var responseCode;
+    var responseText;
+    var self=this;
+    var rj,length,arr;
+    // console.log(params);
+    var response = fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      }
+    }).then(function (response) {
+        responseCode = response.status;
+        responseText = response.statusText;
+        return response.text();
+    }).then(function (result) {
+        var jsonData = JSON.parse(result);
+        if (responseCode == 200) {
+          console.log("success",jsonData);
+        }
+        else {
+          console.log("failure");
+        }
+    }).catch(function (error) {
+      console.error('An error occured');
+      console.error(error);
+    });
+  </script>
+
 
   <script>
 
@@ -84,6 +118,29 @@
     ]
   }
 
+  var mydata2 = [
+	{
+		value : 7,
+		color: "#F7464A",
+    		title : "Sektorius 1"
+	},
+	{
+		value : 20,
+		color: "#46BFBD",
+    		title : "Sektorius 2"
+	},
+	{
+		value : 11,
+		color: "#FDB45C",
+    		title : "Sektorius 3"
+	},
+	{
+		value : 17,
+		color: "#81C784",
+    		title : "Sektorius 4"
+	}
+];
+
 
   var opt1 = {
         canvasBorders : true,
@@ -99,6 +156,28 @@
         graphMin : 0,
         yAxisMinimumInterval : 5,
   }
+
+  var opt2 = {
+      animation : false,
+      canvasBorders : true,
+      inGraphDataShow : true,
+      startAngle : 0,
+      inGraphDataPaddingRadius : 65,
+      inGraphDataTmpl: "<%=v6+' %\n'+v1%>",
+      inGraphDataAlign : "center",
+      inGraphDataVAlign : "middle",
+      percentageInnerCutout : 90,
+      spaceRight : 140,
+      spaceLeft : 140,
+      spaceTop : 80,
+      spaceBottom : 80,
+      inGraphDataFontSize: 25,
+      inGraphDataFontColor :["#F7464A","#46BFBD","#FDB45C","#81C784"],
+      annotateDisplay : true,
+      canvasBackgroundColor: "#EFF5FB"
+  }
+
+
   </script>
 
   <!-- Favicon -->
@@ -110,7 +189,7 @@
 
         <!-- Main bar -->
     <div class="mainbar">
-      
+
       <!-- Page heading -->
       <div class="page-head">
         <h2 class="pull-left"><i class="fa fa-home"></i> Project Report</h2>
@@ -119,7 +198,7 @@
         <div class="bread-crumb pull-right">
           <a href="http://surveymate.github.io/#/admin/5713f05657871011001a5638"><i class="fa fa-home"></i> Home</a>
           <!-- Divider -->
-          <span class="divider">/</span> 
+          <span class="divider">/</span>
           <a href="http://surveymate.github.io/#/admin/5713f05657871011001a5638" class="bread-current">Dashboard</a>
         </div>
 
@@ -149,6 +228,8 @@
           <canvas id="canvas_Line1" height="400" width="600"></canvas>
           <canvas id="canvas_Line2" height="400" width="600"></canvas>
           <canvas id="canvas_Line3" height="400" width="600"></canvas>
+          <canvas id="canvas_Line4" height="400" width="600"></canvas>
+          <canvas id="canvas_Line5" height="400" width="600"></canvas>
       </div>
 
     <!-- Matter ends -->
@@ -171,12 +252,12 @@
       </div>
     </div>
   </div>
-</footer>   
+</footer>
 
 <!-- Footer ends -->
 
 <!-- Scroll to top -->
-<span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span> 
+<span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
 
 <!-- JS -->
 
@@ -196,15 +277,16 @@
 <script src="js/layout1.js"></script> -->
 
 
-<!-- <script type="text/javascript" src="js/modernizr.custom.79639.js"></script> 
+<!-- <script type="text/javascript" src="js/modernizr.custom.79639.js"></script>
  --><!-- Script for this page -->
 <script>
 
   // document.write("<canvas id=\"canvas_Line1\" height=\""+defCanvasHeight+"\" width=\""+defCanvasWidth+"\"></canvas>");
   window.onload = function() {
     var myLine1 = new Chart(document.getElementById("canvas_Line1").getContext("2d")).Line(mydata1,opt1);
-    var myLine2 = new Chart(document.getElementById("canvas_Line2").getContext("2d")).Line(mydata1,opt1);
+    var myLine2 = new Chart(document.getElementById("canvas_Line2").getContext("2d")).Pie(mydata2,opt2);
     var myLine3 = new Chart(document.getElementById("canvas_Line3").getContext("2d")).Line(mydata1,opt1);
+    var myLine4 = new Chart(document.getElementById("canvas_Line4").getContext("2d")).Line(mydata1,opt1);
   }
 </script>
 </body>

@@ -18,11 +18,10 @@ function countUp(count)
         }
     }, int_speed);
 }
-console.log(window.location.href);
-var projectId = window.location.href.split("?")[1].split("=")[1];
-console.log(projectId);
-// var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId='+projectId;
-var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId=5713f50357871011001a5640'
+// var projectId = window.location.href.split("?")[1].split("=")[1];
+var projectId = "57141fae59078a1100579d02"
+var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId='+projectId;
+// var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId=5713f50357871011001a5640'
 var responseCode;
 var responseText;
 var self=this;
@@ -39,9 +38,9 @@ var response = fetch(url, {
     return response.text();
 }).then(function (result) {
     var jsonData = JSON.parse(result);
-    console.log(jsonData);
     if (responseCode == 200) {
-      // countUp(jsonData.numberOfRespondents);
+      console.log("success");
+      countUp(jsonData.numberOfRespondents);
     }
     else {
       console.log("failure");
@@ -51,7 +50,6 @@ var response = fetch(url, {
   console.error(error);
 });
 
-countUp(100);
 
 function countUp3(count)
 {
@@ -75,4 +73,3 @@ function countUp3(count)
 }
 
 countUp3(1291);
-
