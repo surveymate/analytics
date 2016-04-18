@@ -60,7 +60,39 @@
   <![endif]-->
   <script src='js/ChartNew.js'></script>
   <script src='Add-ins/format.js'></script>
-
+  <script>
+    var projectId = window.location.href.split("?")[1].split("=")[1];
+    // var projectId = "57141fae59078a1100579d02"
+    var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId='+projectId;
+    // var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId=5713f50357871011001a5640'
+    var responseCode;
+    var responseText;
+    var self=this;
+    var rj,length,arr;
+    // console.log(params);
+    var response = fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      }
+    }).then(function (response) {
+        responseCode = response.status;
+        responseText = response.statusText;
+        return response.text();
+    }).then(function (result) {
+        var jsonData = JSON.parse(result);
+        console.log(jsonData);
+        if (responseCode == 200) {
+          console.log("success",jsonData);
+        }
+        else {
+          console.log("failure");
+        }
+    }).catch(function (error) {
+      console.error('An error occured');
+      console.error(error);
+    });
+  </script>
   <script>
 
   var charJSPersonalDefaultOptions = { decimalSeparator : "," , thousandSeparator : ".", roundNumber : "none", graphTitleFontSize: 2 };
@@ -134,7 +166,6 @@
 
       <div class="matter">
         <div class="container">
-
           <div class="row">
             <div class="col-md-3 col-sm-6" style="margin-left:37.5%">
               <div class="widgetnew widget-state bg-purple">
