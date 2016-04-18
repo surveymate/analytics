@@ -18,8 +18,9 @@ function countUp(count)
         }
     }, int_speed);
 }
-// console.log(window.location.href);
-// var projectId = window.location.href.split("?")[1].split("=")[1];
+console.log(window.location.href);
+var projectId = window.location.href.split("?")[1].split("=")[1];
+console.log(projectId);
 // var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId='+projectId;
 var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId=5713f50357871011001a5640'
 var responseCode;
