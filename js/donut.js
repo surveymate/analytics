@@ -1,7 +1,7 @@
 console.log("here in donut");
-var projectId = window.location.href.split("?")[1].split("=")[1];
-var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId='+projectId;
-// var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId=5713f50357871011001a5640'
+// var projectId = window.location.href.split("?")[1].split("=")[1];
+// var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId='+projectId;
+var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId=5713f50357871011001a5640'
 var responseCode;
 var responseText;
 var responseFrequency,options,question;
