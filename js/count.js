@@ -49,8 +49,6 @@ var response = fetch(url, {
   console.error(error);
 });
 
-// countUp(100);
-
 function countUp3(count)
 {
     var div_by = 100,
@@ -73,4 +71,3 @@ function countUp3(count)
 }
 
 countUp3(1291);
-
