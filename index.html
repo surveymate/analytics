@@ -108,8 +108,53 @@
           <canvas id="canvas_Line2" height="400" width="600"></canvas>
           <canvas id="canvas_Line3" height="400" width="600"></canvas>
           <canvas id="canvas_Line4" height="400" width="600"></canvas>
-          <canvas id="canvas_Line5" height="400" width="600"></canvas>
+          <br>
+          <br>
+          <table class="table table-striped">
+          <caption><strong>Correlated Analytics</strong><div id="question"></div></caption>
+
+          <thead>
+            <tr>
+              <th>Question 1 / Question 2</th>
+              <th id="mcq_option1"></th>
+              <th id="mcq_option2"></th>
+              <th id="mcq_option3"></th>
+              <th id="mcq_option4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" id="mcq_option5">1</th>
+              <td id="option00"></td>
+              <td id="option01"></td>
+              <td id="option02"></td>
+              <td id="option03"></td>
+            </tr>
+            <tr>
+              <th scope="row" id="mcq_option6">2</th>
+              <td id="option10"></td>
+              <td id="option11"></td>
+              <td id="option12"></td>
+              <td id="option13"></td>
+            </tr>
+            <tr>
+              <th scope="row" id="mcq_option7">3</th>
+              <td id="option20"></td>
+              <td id="option21"></td>
+              <td id="option22"></td>
+              <td id="option23"></td>
+            </tr>
+            <tr>
+              <th scope="row" id="mcq_option8">4</th>
+              <td id="option30"></td>
+              <td id="option31"></td>
+              <td id="option32"></td>
+              <td id="option33"></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
 
     <!-- Matter ends -->
 
@@ -379,6 +424,66 @@
              canvasBackgroundColor: "#EFF5FB",
              graphTitle : "Time graphic"
          }
+         
+         var correlatedAnalytics = jsonData.correlatedAnalytics[0];
+         
+         var questions = document.getElementById('question');
+         questions.innerHTML = 'Question 1 : ' + correlatedAnalytics.question_text1 + '&nbsp;&nbsp;and&nbsp;&nbsp;Question 2 : ' +correlatedAnalytics.question_text2;
+
+         var mcq_option1 = document.getElementById('mcq_option1');
+         mcq_option1.innerHTML = correlatedAnalytics.mcq_options2[0];
+         var mcq_option2 = document.getElementById('mcq_option2');
+         mcq_option2.innerHTML = correlatedAnalytics.mcq_options2[1];
+         var mcq_option3 = document.getElementById('mcq_option3');
+         mcq_option3.innerHTML = correlatedAnalytics.mcq_options2[2];
+         var mcq_option4 = document.getElementById('mcq_option4');
+         mcq_option4.innerHTML = correlatedAnalytics.mcq_options2[3];
+
+         var mcq_option5 = document.getElementById('mcq_option5');
+         mcq_option5.innerHTML = correlatedAnalytics.mcq_options1[0];
+         var mcq_option6 = document.getElementById('mcq_option6');
+         mcq_option6.innerHTML = correlatedAnalytics.mcq_options1[1];
+         var mcq_option7 = document.getElementById('mcq_option7');
+         mcq_option7.innerHTML = correlatedAnalytics.mcq_options1[2];
+         var mcq_option8 = document.getElementById('mcq_option8');
+         mcq_option8.innerHTML = correlatedAnalytics.mcq_options1[3];
+
+         var option00 = document.getElementById('option00');
+         option00.innerHTML = correlatedAnalytics.grid[0][0];
+         var option01 = document.getElementById('option01');
+         option01.innerHTML = correlatedAnalytics.grid[0][1];
+         var option02 = document.getElementById('option02');
+         option02.innerHTML = correlatedAnalytics.grid[0][2];
+         var option03 = document.getElementById('option03');
+         option03.innerHTML = correlatedAnalytics.grid[0][3];
+
+         var option10 = document.getElementById('option10');
+         option10.innerHTML = correlatedAnalytics.grid[1][0];
+         var option11 = document.getElementById('option11');
+         option11.innerHTML = correlatedAnalytics.grid[1][1];
+         var option12 = document.getElementById('option12');
+         option12.innerHTML = correlatedAnalytics.grid[1][2];
+         var option13 = document.getElementById('option13');
+         option13.innerHTML = correlatedAnalytics.grid[1][3];
+
+         var option20 = document.getElementById('option20');
+         option20.innerHTML = correlatedAnalytics.grid[2][0];
+         var option21 = document.getElementById('option21');
+         option21.innerHTML = correlatedAnalytics.grid[2][1];
+         var option22 = document.getElementById('option22');
+         option22.innerHTML = correlatedAnalytics.grid[2][2];
+         var option23 = document.getElementById('option23');
+         option23.innerHTML = correlatedAnalytics.grid[2][3];
+
+         var option30 = document.getElementById('option30');
+         option30.innerHTML = correlatedAnalytics.grid[3][0];
+         var option31 = document.getElementById('option31');
+         option31.innerHTML = correlatedAnalytics.grid[3][1];
+         var option32 = document.getElementById('option32');
+         option32.innerHTML = correlatedAnalytics.grid[3][2];
+         var option33 = document.getElementById('option33');
+         option33.innerHTML = correlatedAnalytics.grid[3][3];
+
           setTimeout(function(){
           var myLine1 = new Chart(document.getElementById("canvas_Line1").getContext("2d")).Bar(mydata1,opt1);
           var myLine2 = new Chart(document.getElementById("canvas_Line2").getContext("2d")).Pie(singleQuestionAnalyticsData[0],singleQuestionAnalyticsOptions[0]);
