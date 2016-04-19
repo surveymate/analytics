@@ -86,7 +86,8 @@ function fmtChartJSPerso(config, value, fmt) {
 			]);
 			break;
 		default:
-			return_value = value;
+			spltdt = fmt.split(/[\s,]+/)[1].toUpperCase();
+			return_value = spltdt.replaceArray(["DD", "MM", "YYYY", "YY"], [value.getDate(), 1 + value.getMonth(), value.getFullYear(), value.getYear() % 100]);
 			break;
 	}
 	return (return_value);
