@@ -104,9 +104,9 @@
               </div>
             </div>
           </div>
-          <canvas id="canvas_Line1" height="400" width="600"></canvas>
           <canvas id="canvas_Line2" height="400" width="600"></canvas>
           <canvas id="canvas_Line3" height="400" width="600"></canvas>
+          <canvas id="canvas_Line1" height="400" width="600"></canvas>
           <canvas id="canvas_Line4" height="400" width="600"></canvas>
           <br>
           <br>
@@ -224,7 +224,7 @@
        var jsonData = JSON.parse(result);
        if (responseCode == 200) {
          console.log("success",jsonData);
-         var charJSPersonalDefaultOptions = { decimalSeparator : "," , thousandSeparator : ".", roundNumber : "none", graphTitleFontSize: 2 };
+         var charJSPersonalDefaultOptions = { decimalSeparator : "." , thousandSeparator : ",", roundNumber : "none", graphTitleFontSize: 2 };
 
          defCanvasWidth=600;
          defCanvasHeight=400;
@@ -464,7 +464,7 @@
          var option12 = document.getElementById('option12');
          option12.innerHTML = correlatedAnalytics.grid[1][2];
          var option13 = document.getElementById('option13');
-         option13.innerHTML = correlatedAnalytics.grid[1][3];
+         option13.innerHTML = correlatedAnalytics.grid[1] [3];
 
          var option20 = document.getElementById('option20');
          option20.innerHTML = correlatedAnalytics.grid[2][0];
