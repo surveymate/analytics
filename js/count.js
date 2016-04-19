@@ -18,8 +18,8 @@ function countUp(count)
         }
     }, int_speed);
 }
-// var projectId = window.location.href.split("?")[1].split("=")[1];
-var projectId = "57141fae59078a1100579d02"
+var projectId = window.location.href.split("?")[1].split("=")[1];
+// var projectId = "57141fae59078a1100579d02"
 var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId='+projectId;
 // var url = 'http://surveymate-io.herokuapp.com/api/responses/getAnalytics?projectId=5713f50357871011001a5640'
 var responseCode;
@@ -39,7 +39,6 @@ var response = fetch(url, {
 }).then(function (result) {
     var jsonData = JSON.parse(result);
     if (responseCode == 200) {
-      console.log("success");
       countUp(jsonData.numberOfRespondents);
     }
     else {
@@ -49,7 +48,6 @@ var response = fetch(url, {
   console.error('An error occured');
   console.error(error);
 });
-
 
 function countUp3(count)
 {
